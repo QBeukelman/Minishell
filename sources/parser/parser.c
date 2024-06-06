@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/11 19:53:12 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/06/01 16:16:12 by qtrinh        ########   odam.nl         */
+/*   Updated: 2024/06/06 17:46:19 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static t_cmd	*construct_command(t_cmd *cmd, t_parse *p)
 {
 	if (p->tokens_c->type == COMMAND)
-		cmd->value = p->tokens_c->value;
+		cmd->value = safe_strdup(p->tokens_c->value);
 	else if (p->tokens_c->type == S_QUOTE || p->tokens_c->type == D_QUOTE)
 	{
-		cmd->value = p->tokens_c->value;
+		cmd->value = safe_strdup(p->tokens_c->value);
 		if (p->tokens_c->next)
 			p->tokens_c = p->tokens_c->next;
 	}
@@ -52,6 +52,17 @@ bool	build_cmds(t_parse *p)
 	return (SUCCESS);
 }
 
+static void	free_parse(t_parse *p)
+{
+	// if (p->tokens_c->value)
+	// {
+	// 	free(p->tokens_c->value);
+	// 	p->tokens_c->value = NULL;
+	// }
+	p->cmds = NULL;
+	free(p);
+}
+
 bool	shell_parser(t_shell *shell)
 {
 	t_parse	*p;
@@ -64,8 +75,7 @@ bool	shell_parser(t_shell *shell)
 	shell->cmd_table->cmds = p->cmds;
 	shell->cmd_table->cmd_count = p->cmd_count;
 	parser_post_process(shell);
-	p->cmds = NULL;
-	free(p);
+	free_parse(p);
 	if (shell->print_output)
 		print_cmds(shell->cmd_table);
 	return (SUCCESS);

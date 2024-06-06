@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/03 13:15:00 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/06/01 16:08:00 by qtrinh        ########   odam.nl         */
+/*   Updated: 2024/06/06 19:07:18 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,12 @@ typedef enum e_child_builtin
 } t_child_builtin;
 
 //===============================================================: Struct
+
+typedef struct s_vec {
+	char *data;
+	unsigned int len;
+	unsigned int capacity;
+}	t_vec;
 typedef struct s_split
 {
 	int			len;
@@ -334,6 +340,7 @@ int		exit_shell(t_cmd *cmd, t_shell *shell);
 bool	is_valid_export_arg(const char *arg);
 
 // export.c
+char	*env_key_from_arg(const char *arg);
 int		export(t_cmd *cmd, t_shell *shell);
 
 // pwd.c
@@ -407,17 +414,25 @@ void	rl_replace_line(const char *text, int clear_undo);
 
 //===============================================================: Expander
 // expander_utils.c
+bool	expand_env(char **env, char *arg, size_t *i, t_vec *exp_str);
 void	free_env_values(char *key, char *value, t_env_utils *env_utils);
 int		count_expand(char *arg);
 bool	is_arg_key(char *arg, char *key);
-char 	*expand_exit_code(char *arg, char *key, char *val, \
-	size_t i, t_env_utils *env_utils);
+// char 	*expand_exit_code(char *arg, char *key, char *val, \
+// 	size_t i, t_env_utils *env_utils);
 
 // expander.c
 char	*will_expand(char **env, char *arg);
 
 // get_env_key.c
 char	*get_env_key(char *arg, size_t i);
+
+// vector.c
+void	free_vector(t_vec *v);
+bool	vec_init(t_vec *v, unsigned int size);
+bool	vec_resize(t_vec *v);
+bool	vec_push(t_vec *v, char c);
+char	*get_str(t_vec *v);
 
 
 //===============================================================: Utils

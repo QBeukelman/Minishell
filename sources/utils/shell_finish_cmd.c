@@ -6,7 +6,7 @@
 /*   By: qtrinh <qtrinh@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/01 16:00:19 by qtrinh        #+#    #+#                 */
-/*   Updated: 2024/06/01 16:13:49 by qtrinh        ########   odam.nl         */
+/*   Updated: 2024/06/06 14:08:58 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ void	free_cmd(t_cmd *cmd)
 		free_cmd_fd(cmd->fd_in);
 	if (cmd->fd_out)
 		free_cmd_fd(cmd->fd_out);
+	if (cmd->value)
+	{
+		free(cmd->value);
+		cmd->value = NULL;
+	}
 	if (cmd->cmd_path)
 	{
 		free(cmd->cmd_path);

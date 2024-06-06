@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/24 19:13:47 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/05/31 16:10:20 by qtrinh        ########   odam.nl         */
+/*   Updated: 2024/06/06 14:29:12 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,5 @@ void	*ft_realloc(void *ptr, size_t size)
 	ft_memcpy(new_ptr, ptr, size);
 	return (new_ptr);
 }
+
+// TODO old size meegeven

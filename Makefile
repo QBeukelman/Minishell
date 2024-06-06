@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/12/03 13:06:57 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2024/06/01 16:05:56 by qtrinh        ########   odam.nl          #
+#    Updated: 2024/06/06 15:28:34 by qtrinh        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,8 @@ SOURCES_EXECUTOR_SIGNALS	= signals.c
 
 SOURCES_EXPANDER		= expander_utils.c \
 								expander.c \
-								get_env_key.c
+								get_env_key.c \
+								vector.c \
 
 
 # ===== Manage Directories =====

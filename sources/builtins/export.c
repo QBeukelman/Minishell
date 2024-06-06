@@ -6,13 +6,13 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/13 21:25:42 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/05/31 17:06:34 by qtrinh        ########   odam.nl         */
+/*   Updated: 2024/06/06 18:56:32 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static char	*env_key_from_arg(const char *arg)
+char	*env_key_from_arg(const char *arg)
 {
 	int		i;
 	char	*key;
