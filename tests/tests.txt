@@ -42,10 +42,11 @@ grep aa << EOF | wc | wc -w >> OUTPUT
 === EXPANDER ===
 echo "hello"
 cat "README.md" "Makefile" | wc -w
-echo $USER$PATH										[1] Valgrind LEAK
-e'ch'o hello										[1] Valgrind LEAK
+echo $'USER'	<									[!] incorrect output -> out of scope?
+echo $USER$PATH	<									[!] incorrect output
+e'ch'o hello	<									[!] incorrect output -> free whole str
 echo "hello $TERM$NOARG more"						[1] Valgrind LEAK
-echo $$$$$???										[3] Valgrind LEAK
+echo $$$$$???										[!] incorrect output -> free whole str
 echo $?
 echo 123$????										
 echo hello$?										
@@ -61,8 +62,9 @@ echo ''"hello"
 echo ''"hello"''"there"
 export ch=ch
 echo e"$ch"o										[!] Valgrind LEAK
-echo "hello $USER"$TERM" more"
-echo "hello $USER'$TERM' more"
+echo "hello $USER"$TERM" more"						[!] incorrect output ->free whole str
+echo "hello $USER'$TERM' more"						[!] incorrect output
+echo '$USER'$HOME									[!] incorrect output -> sees quote as 1 str
 
 
 === BUILTINS ===

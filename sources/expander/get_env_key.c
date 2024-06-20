@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 22:10:43 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/06/16 12:42:09 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/06/20 15:02:03 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char *skip_multiple_expand_chars(char *arg, size_t i)
 			{
 				buffer[k] = '\0';
 				arg = ft_str_remove(arg, buffer);
-				free (buffer);
+				free(buffer);
 				return (arg);
 			}
 			buffer[k] = arg[j];

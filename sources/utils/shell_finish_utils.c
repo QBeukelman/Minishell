@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/23 16:15:41 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/06/01 16:13:05 by qtrinh        ########   odam.nl         */
+/*   Updated: 2024/06/20 14:34:19 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,24 @@ void	free_2d_array(char **array)
 			i++;
 		}
 		free(array);
+	}
+}
+
+void	free_strs(char *str1, char *str2, char *str3)
+{
+	if (str1)
+	{
+		free(str1);
+		str1 = NULL;
+	}
+	if (str2)
+	{
+		free(str2);
+		str2 = NULL;
+	}
+	if (str3)
+	{
+		free(str3);
+		str3 = NULL;
 	}
 }

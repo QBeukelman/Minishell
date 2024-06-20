@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/03 13:15:00 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/06/16 12:37:22 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/06/20 15:05:28 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 // ===== [ includes ] =====
 # include "libft/includes/libft.h"
+# include "libft/lib_vector/vector.h"
 # include "error_messages.h"
 
 // ===== [ libraries ] =====
@@ -406,7 +407,7 @@ void			rl_replace_line(const char *text, int clear_undo);
 // expander_utils.c
 int				count_expand(char *arg);
 bool			is_arg_key(char *arg, char *key);
-char			*expand_exit_code(char *arg, char *key, size_t i);
+char			*expand_exit_code(char *arg, size_t i, t_vec *vec);
 
 // expander.c
 char			*will_expand(char **env, char *arg);
@@ -441,10 +442,12 @@ t_validation	print_tokens(t_shell *shell);
 void			print_strings(char **strings);
 
 // shell_finish_cmd.c
+void			free_args_format_cmd(t_cmd *cmd);
 void			free_cmd(t_cmd *cmd);
 
 // shell_finish_utils.c
 void			free_2d_array(char **array);
+void			free_strs(char *str1, char *str2, char *str3);
 void			free_tokens(t_token *token);
 void			free_cmd(t_cmd *cmd);
 

@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/15 12:37:13 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/06/16 11:22:55 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/06/20 14:11:26 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ bool ft_vec_push_str(t_vec *v, const char *str)
 {
     size_t	str_len; 
 	
-	str_len = strlen(str);
+	str_len = ft_strlen(str);
     while (v->len + str_len > v->capacity)
 	{
         if (ft_vec_resize(v) == false)

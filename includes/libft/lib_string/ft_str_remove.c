@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/17 11:11:34 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/06/16 12:41:18 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/06/20 15:01:29 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	*ft_str_remove(char *base_input, const char *remove)
 
 	// If no trailing characters, return modified base
 	if ((size_t)(i + remove_len) == ft_strlen(base_input))
-		return (ft_vec_to_str(&vec));
+		return (free(base_input), ft_vec_to_str(&vec));
 
 	// Buffer leading substring
 	trailing_substr = buffer_trailing_string(base_input, remove_len, i);
@@ -112,6 +112,5 @@ char	*ft_str_remove(char *base_input, const char *remove)
 		return (NULL);
 	ft_vec_push_str(&vec, trailing_substr);
 	free (trailing_substr);
-	
-	return (ft_vec_to_str(&vec));
+	return (free(base_input), ft_vec_to_str(&vec));
 }

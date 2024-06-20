@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/16 10:14:19 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/06/16 11:36:00 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/06/20 12:11:32 by qtrinh        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,19 @@ t_cmd	*construct_args(t_cmd *cmd, t_parse *p)
 {
 	int			i;
 	t_token		*current;
-	t_vec		vec;
 
 	i = 0;
 	current = p->tokens_c;
 	cmd->args = allocate_args(p);
 	if (cmd->args == NULL)
 		return (NULL);
-
 	while (current)
 	{
 		if (is_type_arg(current->type))
 		{
-			if (ft_vec_init(&vec, ft_strlen(current->value)) == false)
-				return (free(cmd->args), NULL);
-
-			if (ft_vec_push_str(&vec, current->value) == false)
-			{
-				ft_vec_free(&vec);
-				return (free(cmd->value), NULL);
-			}
-
-			free(cmd->args[i]);
-			cmd->args[i] = ft_vec_to_str(&vec);
-
+			cmd->args[i] = safe_strdup(current->value);
 			if (cmd->args[i] == NULL)
-			{
-				while (i >= 0)
-					free(cmd->args[--i]);
-				return (free(cmd->args), NULL);
-			}
+				return (free_args_format_cmd(cmd), NULL);
 			i++;
 		}
 		if (current->type == PIPE)
